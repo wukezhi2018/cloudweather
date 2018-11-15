@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <litepal>
-    <dbname values="cloud_weather"/>
-    <version value="1"/>
+
+    <dbname value="cloud_weather" />
+
+    <version value="1" />
+
     <list>
-        <mapping class="top.wukezhi.cloudweather.db.City"/>
-        <mapping class="top.wukezhi.cloudweather.db.Province"/>
-        <mapping class="top.wukezhi.cloudweather.db.County"/>
+        <mapping class="top.wukezhi.cloudweather.db.Province" />
+        <mapping class="top.wukezhi.cloudweather.db.City" />
+        <mapping class="top.wukezhi.cloudweather.db.County" />
     </list>
+
 </litepal>
