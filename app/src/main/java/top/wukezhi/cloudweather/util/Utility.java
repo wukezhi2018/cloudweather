@@ -2,6 +2,8 @@ package top.wukezhi.cloudweather.util;
 
 import android.text.TextUtils;
 
+import com.google.gson.Gson;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -9,6 +11,7 @@ import org.json.JSONObject;
 import top.wukezhi.cloudweather.db.City;
 import top.wukezhi.cloudweather.db.County;
 import top.wukezhi.cloudweather.db.Province;
+import top.wukezhi.cloudweather.gson.Weather;
 
 //由于服务器返回的省市县数据都是json格式所以创建一个类来解析处理这种数据
 public class Utility {
@@ -73,5 +76,19 @@ public class Utility {
                 e.printStackTrace();
             }
         }return false;
+    }
+    /**
+     * 将返回的JSON数据解析成Weather实体类,fromJson()方法将JSON数据转化成weather对象
+     */
+    public static Weather handleWeatherResponse(String response) {
+        try {
+            JSONObject jsonObject = new JSONObject(response);
+            JSONArray jsonArray = jsonObject.getJSONArray("HeWeather");
+            String weatherContent = jsonArray.getJSONObject(0).toString();
+            return new Gson().fromJson(weatherContent, Weather.class);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }
